@@ -46,9 +46,9 @@ while 1:
         print(name,dist.min())
         
         if name!='Unidentified':
-            font_size=int(slope[dist.argmin()]*(w_face+2*dw)//2+intercept[dist.argmin()])
+            font_size=int(slope[dist.argmin()]*((w_face+2*dw)//3)*2+intercept[dist.argmin()])
         else:
-            font_size=int(0.1974311*(w_face+2*dw)//2+0.03397702412218706)
+            font_size=int(0.1974311*((w_face+2*dw)//3)*2+0.03397702412218706)
             
         font=ImageFont.truetype(font_path,font_size)
         size=font.getsize(name)
