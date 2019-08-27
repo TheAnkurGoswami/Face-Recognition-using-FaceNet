@@ -6,7 +6,7 @@ The system comes with
 both Live recognition & Image recognition.
 It is trained on faces of some celebrities.
 
-For any queries Contact: [Ankur Goswami](ankurgoswami1401@gmail.com)
+For any queries Contact: [Ankur Goswami](https://github.com/Ankur1401/)
 
 
 * __Installing dependencies:__
