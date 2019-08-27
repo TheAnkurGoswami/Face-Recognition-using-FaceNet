@@ -6,6 +6,8 @@ The system comes with
 both Live recognition & Image recognition.
 It is trained on faces of some celebrities.
 
+For any queries Contact: [Ankur Goswami](ankurgoswami1401@gmail.com)
+
 
 * __Installing dependencies:__
   * For Anaconda users: `conda install --file requirements.txt`<br>
