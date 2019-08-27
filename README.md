@@ -32,11 +32,14 @@ To train model on different faces, follow the given steps:<br>
           python image_recognition.py
       ```
      1. Output images will then be available in [`/test/predicted/`](https://github.com/Ankur1401/Face-Recognition-using-FaceNet/tree/master/test/predicted) directory.
-     
    
-     
+  1. __Live Face Recognition(Obviously using camera):__
+   <br>Open the repository directory in terminal and run following command:
+      ```
+      python live_recognition.py
+      ```
 
-__Examples__:
+## Examples:
 
 __NOTE:__ Faces with __Unidentified__ labels are faces on which the model is not trained.
 
