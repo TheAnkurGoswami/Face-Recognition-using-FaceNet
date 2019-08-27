@@ -1,7 +1,10 @@
 # Face-Recognition-using-FaceNet
 
 
-This a Face Recognition System implemented using FaceNet. It is trained on some celebrity faces.
+This face recognition system is implemented upon a pre-trained FaceNet model achieving a state-of-the-art accuracy.
+The system comes with
+both Live recognition & Image recognition
+It is trained on some celebrity faces.
 
 The repository requires an additional file containing the model. The file is too large to upload here.
 So I've provided a Google Drive. Download the file and keep it inside "/data/model/" directory.
