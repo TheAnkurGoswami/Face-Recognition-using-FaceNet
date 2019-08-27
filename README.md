@@ -18,6 +18,36 @@ It is trained on some celebrity faces.
 
 __Examples__:
 
-<img src=https://github.com/Ankur1401/Face-Recognition-using-FaceNet/blob/master/test/vampire-diaries.jpg>
-<img src=https://github.com/Ankur1401/Face-Recognition-using-FaceNet/blob/master/test/predicted/vampire-diaries.jpg>
+__NOTE:__ Faces with __Unidentified__ labels are faces on which the model is not trained.
+
+__Example #1:__
+<br>Before:<br>
+<img src=https://github.com/Ankur1401/Face-Recognition-using-FaceNet/blob/master/test/vampire-diaries.jpg width=50%>
+<br>After:<br>
+<img src=https://github.com/Ankur1401/Face-Recognition-using-FaceNet/blob/master/test/predicted/vampire-diaries.jpg width=50%>
+
+__Example #2:__
+<br>Before:<br>
+<img src=https://github.com/Ankur1401/Face-Recognition-using-FaceNet/blob/master/test/the-avengers-walt03.jpg width=50%>
+<br>After:<br>
+<img src=https://github.com/Ankur1401/Face-Recognition-using-FaceNet/blob/master/test/predicted/the-avengers-walt03.jpg width=50%>
+
+__Example #3:__
+<br>Before:<br>
+<img src=https://github.com/Ankur1401/Face-Recognition-using-FaceNet/blob/master/test/2ec945ecd5f7c08789f3ef5da5287410.jpg width=50%>
+<br>After:<br>
+<img src=https://github.com/Ankur1401/Face-Recognition-using-FaceNet/blob/master/test/predicted/2ec945ecd5f7c08789f3ef5da5287410.jpg width=50%>
+
+__Example #4:__
+<br>Before:<br>
+<img src=https://github.com/Ankur1401/Face-Recognition-using-FaceNet/blob/master/test/3840x2160-avengers-cast-photocall-moscow-05.JPG width=75%>
+<br>After:(Need to zoom)<br>
+<img src=https://github.com/Ankur1401/Face-Recognition-using-FaceNet/blob/master/test/predicted/3840x2160-avengers-cast-photocall-moscow-05.JPG width=75%>
+
+__Example #5:__
+<br>In this example, the model was trained on faces of my friends.
+<br>Before:<br>
+<img src=https://github.com/Ankur1401/Face-Recognition-using-FaceNet/blob/master/test/00000PORTRAIT_00000_BURST20180310144236486.jpg width=75%>
+<br>After:<br>
+<img src=https://github.com/Ankur1401/Face-Recognition-using-FaceNet/blob/master/test/predicted/00000PORTRAIT_00000_BURST20180310144236486.jpg width=75%>
 
