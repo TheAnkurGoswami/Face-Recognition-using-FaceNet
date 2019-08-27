@@ -10,3 +10,7 @@ The repository requires an additional file containing the model. The file is too
 So I've provided a Google Drive. Download the file and keep it inside `/data/model/` directory.
 
 [Click Here](https://drive.google.com/open?id=1PZ_6Zsy1Vb0s0JmjEmVd8FS99zoMCiN1)  to download the file.
+
+
+<img src=https://github.com/Ankur1401/Face-Recognition-using-FaceNet/blob/master/test/the-avengers-walt03.jpg width=2000>
+<img src=https://github.com/Ankur1401/Face-Recognition-using-FaceNet/blob/master/test/predicted/the-avengers-walt03.jpg>
