@@ -3,8 +3,8 @@
 
 This face recognition system is implemented upon a pre-trained FaceNet model achieving a state-of-the-art accuracy.
 The system comes with
-both Live recognition & Image recognition
-It is trained on some celebrity faces.
+both Live recognition & Image recognition.
+It is trained on faces of some celebrities.
 
 
 * __Installing dependencies:__
