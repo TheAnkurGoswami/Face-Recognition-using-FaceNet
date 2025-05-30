@@ -1,78 +1,85 @@
-# Face-Recognition-using-FaceNet
+# Face Recognition Project
 
+This project implements a face recognition system using a pre-trained FaceNet model (Keras implementation) and Haar cascades for face detection. It can perform recognition on static images and live webcam feeds.
 
-This face recognition system is implemented upon a pre-trained FaceNet model achieving a state-of-the-art accuracy.
-The system comes with
-both Live recognition & Image recognition.
-It is trained on faces of some celebrities.
+## Project Structure
 
-For any queries Contact: [Ankur Goswami](https://github.com/Ankur1401/)
+-   `config.py`: Contains all centralized file paths and configurations.
+-   `core/`: Directory for core application logic.
+    -   `utils.py`: Utility functions like image preprocessing (prewhiten, l2_normalize).
+    -   `face_detector.py`: `FaceDetector` class for detecting faces in images.
+    -   `face_embedder.py`: `FaceEmbedder` class for generating face embeddings using the FaceNet model.
+    -   `face_recognizer.py`: `FaceRecognizer` class for comparing embeddings against a known database.
+    -   `drawing_utils.py`: Utilities for drawing face rectangles and name labels on images.
+-   `scripts/`: Directory for utility and data preparation scripts.
+    -   `prepare_data.py`: Script to detect faces, generate embeddings, and calculate font parameters.
+-   `image_recognition.py`: Script to perform face recognition on images in a directory.
+-   `live_recognition.py`: Script to perform real-time face recognition using a webcam.
+-   `data/`: Directory for all data.
+    -   `cascade/haarcascade_frontalface_default.xml`: Haar cascade for face detection.
+    -   `font/Calibri Regular.ttf`: Font file used for drawing names.
+    -   `model/facenet_keras.h5`: The pre-trained FaceNet Keras model. **(Important: You need to provide this model file)**.
+    -   `images/`: Place raw images here for face detection by `scripts/prepare_data.py`.
+    -   `faces/`: Detected and cropped face images will be stored here by `scripts/prepare_data.py`.
+    -   `arrays/`: Stores generated embeddings (`embeddings.npz`) and font parameters (`vars.npz`).
+-   `test/`: Directory for test images. Processed images will be saved in `test/predicted/`.
+-   `requirements.txt`: Lists all Python dependencies.
 
+## Setup
 
-* __Installing dependencies:__
-  * For Anaconda users: `conda install --file requirements.txt`<br>
-  * For python users: `pip install -r requirements.txt`<br>
-    (even Anaconda users can use this if they use anaconda prompt instead of terminal)
+1.  **Clone the repository.**
+2.  **Obtain Model File**: Download or otherwise obtain the `facenet_keras.h5` model file and place it in the `data/model/` directory. This file is not included in the repository.
+3.  **Install Dependencies**:
+    ```bash
+    pip install -r requirements.txt
+    ```
+    It's recommended to use a virtual environment.
 
-* __Downloading the model__:<br>
-  The repository requires an additional file to work. The file is too large to upload here.
-  So I've provided a Google Drive link of it. Download the file and keep it inside [`/data/model/`](https://github.com/Ankur1401/Face-Recognition-using-FaceNet/tree/master/data/model) directory.<br> [Click Here](https://drive.google.com/open?id=1PZ_6Zsy1Vb0s0JmjEmVd8FS99zoMCiN1)  to download the file.
-  
-* __Training on other faces:__ <br>
-To train model on different faces, follow the given steps:<br>
-  1. Put the images containing clear frontal face in [`/data/images/`](https://github.com/Ankur1401/Face-Recognition-using-FaceNet/tree/master/data/images) directory.
-  1. Open the repository directory in terminal and run following commands in given order:
-     1. `cd script`
-     1. `python generate_data.py`
-  1. Follow program instructions.
-  
-* __Testing/Detecting faces:__ <br>
-  1. __Face Recognition from Images__:
-     1. Put the images containing the faces to predict in [`/test/`](https://github.com/Ankur1401/Face-Recognition-using-FaceNet/tree/master/test) directory.
-     1. Open the repository directory in terminal and run following command:
-      ```
-          python image_recognition.py
-      ```
-     1. Output images will then be available in [`/test/predicted/`](https://github.com/Ankur1401/Face-Recognition-using-FaceNet/tree/master/test/predicted) directory.
-   
-  1. __Live Face Recognition(Obviously using camera):__
-   <br>Open the repository directory in terminal and run following command:
-      ```
-      python live_recognition.py
-      ```
+## Usage
 
-## Examples:
+### 1. Prepare Data (Embeddings and Font Parameters)
 
-__NOTE:__ Faces with __Unidentified__ labels are faces on which the model is not trained.
+This step is crucial and needs to be run first.
 
-__Example #1:__
-<br>Before:<br>
-<img src=https://github.com/Ankur1401/Face-Recognition-using-FaceNet/blob/master/test/vampire-diaries.jpg width=50%>
-<br>After:<br>
-<img src=https://github.com/Ankur1401/Face-Recognition-using-FaceNet/blob/master/test/predicted/vampire-diaries.jpg width=50%>
+-   **Option A: Detect faces from raw images:**
+    1.  Place your raw images (e.g., `PersonA.jpg`, `PersonB.png`) into the `data/images/` directory.
+    2.  Run the `prepare_data.py` script:
+        ```bash
+        python scripts/prepare_data.py
+        ```
+    3.  The script will prompt you to choose an option. Select '2' to detect faces.
+    4.  Detected faces will be saved in `data/faces/` (e.g., `PersonA_face_0.jpg`).
+    5.  **Crucial**: Review the images in `data/faces/`. Delete any incorrect detections. Ensure that the filenames correctly represent the person's name (e.g., `PersonA_face_0.jpg`, `PersonA_face_1.jpg` for PersonA). The script uses the part of the filename before `_face_` as the person's name.
+    6.  After cleanup, run `python scripts/prepare_data.py` again and choose option '1' ("Have faces already").
+-   **Option B: Use existing cropped face images:**
+    1.  Place your already cropped face images directly into the `data/faces/` directory. Ensure each filename is the person's name (e.g., `PersonA.jpg`, `PersonB.jpg`). If multiple images exist for the same person, ensure they are uniquely named but start with the person's actual name if you want them grouped, or handle naming according to how `prepare_data.py` extracts names (currently, it takes the filename before `.jpg` as the name if no `_face_` pattern is found). For best results with the current `prepare_data.py` when providing your own faces, name them like `Person Name.jpg`.
+    2.  Run the `prepare_data.py` script:
+        ```bash
+        python scripts/prepare_data.py
+        ```
+    3.  Choose option '1' ("Have faces already").
 
-__Example #2:__
-<br>Before:<br>
-<img src=https://github.com/Ankur1401/Face-Recognition-using-FaceNet/blob/master/test/the-avengers-walt03.jpg width=50%>
-<br>After:<br>
-<img src=https://github.com/Ankur1401/Face-Recognition-using-FaceNet/blob/master/test/predicted/the-avengers-walt03.jpg width=50%>
+This will generate `data/arrays/embeddings.npz` (containing face embeddings and names) and `data/arrays/vars.npz` (containing font calculation parameters).
 
-__Example #3:__
-<br>Before:<br>
-<img src=https://github.com/Ankur1401/Face-Recognition-using-FaceNet/blob/master/test/2ec945ecd5f7c08789f3ef5da5287410.jpg width=50%>
-<br>After:<br>
-<img src=https://github.com/Ankur1401/Face-Recognition-using-FaceNet/blob/master/test/predicted/2ec945ecd5f7c08789f3ef5da5287410.jpg width=50%>
+### 2. Perform Recognition on Static Images
 
-__Example #4:__
-<br>Before:<br>
-<img src=https://github.com/Ankur1401/Face-Recognition-using-FaceNet/blob/master/test/3840x2160-avengers-cast-photocall-moscow-05.JPG width=75%>
-<br>After:(Need to zoom)<br>
-<img src=https://github.com/Ankur1401/Face-Recognition-using-FaceNet/blob/master/test/predicted/3840x2160-avengers-cast-photocall-moscow-05.JPG width=75%>
+1.  Place images you want to test into the `test/` directory.
+2.  Run the script:
+    ```bash
+    python image_recognition.py
+    ```
+3.  Annotated images will be saved in `test/predicted/`.
 
-__Example #5:__
-<br>In this example, the model was trained on faces of my friends.
-<br>Before:<br>
-<img src=https://github.com/Ankur1401/Face-Recognition-using-FaceNet/blob/master/test/00000PORTRAIT_00000_BURST20180310144236486.jpg width=75%>
-<br>After:<br>
-<img src=https://github.com/Ankur1401/Face-Recognition-using-FaceNet/blob/master/test/predicted/00000PORTRAIT_00000_BURST20180310144236486.jpg width=75%>
+### 3. Perform Live Recognition
 
+1.  Ensure your webcam is connected.
+2.  Run the script:
+    ```bash
+    python live_recognition.py
+    ```
+3.  A window will appear showing the webcam feed with detected faces and names. Press 'q' to quit.
+
+## Notes
+
+-   The accuracy of the recognition depends heavily on the quality of the input images for embedding generation and the FaceNet model itself.
+-   Ensure `config.py` points to the correct paths if you modify the directory structure further.
